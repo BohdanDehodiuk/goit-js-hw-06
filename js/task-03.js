@@ -13,22 +13,18 @@ const images = [
   },
 ];
 
-const galleryList = document.querySelector(".gallery");
-console.log(galleryList);
+const elementList = document.querySelector(".gallery");
 
-const gallery = images.map((option) => {
-  const galleryItem = document.createElement("li");
-  galleryItem.classList.add("gallery-item");
-  const galleryImg = document.createElement("img");
-  galleryImg.classList.add("gallery-img");
-  galleryImg.src = option.url;
-  galleryImg.alt = option.alt;
+elementList.style.display = "flex";
+elementList.style.flexDirection = "column";
+elementList.style.justifyContent = "space-between";
+elementList.style.listStyle = "none";
 
-  galleryItem.append(galleryImg);
+const createGallery = images
+  .map(
+    (image) =>
+      `<li><img src="${image.url}" alt="${image.alt}" width = 250></li>`
+  )
+  .join("");
 
-  return galleryItem;
-});
-
-// console.log(gallery);
-
-galleryList.append(...gallery);
+elementList.insertAdjacentHTML("beforeEnd", createGallery);
